@@ -1,2 +1,4 @@
 # Non-linear programming and evolutional algorithms
-# Vladimir Getmantsev SV84-2023
+## Contributers
+- Vladimir Getmantsev SV84-2023
+- Roman Minakov SV83-2023
