@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>one_dim_opt_methods</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>1_one_dim_opt_methods</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7543,12 +7543,12 @@ a.anchor-link {
 </li>
 </ol>
 <p>$$
-x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}
 $$</p>
 <p>где:</p>
 <ul>
-<li>$f(x_n)$ — значение функции в точке $x_n$,</li>
-<li>$f'(x_n)$ — значение производной функции в точке $x_n$.</li>
+<li>$f'(x_n)$ — значение первой производной функции в точке $x_n$,</li>
+<li>$f''(x_n)$ — значение первой производной функции в точке $x_n$.</li>
 </ul>
 <ol start="3">
 <li><p><strong>Обновление:</strong></p>
@@ -7644,7 +7644,13 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="2.-%D0%9C%D0%B5%D1%82%D0%BE%D0%B4-%D1%81%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D1%85">2. Метод секущих<a class="anchor-link" href="#2.-%D0%9C%D0%B5%D1%82%D0%BE%D0%B4-%D1%81%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D1%85">¶</a></h1><p><strong>Метод секущих (метод хорд)</strong> — это численный метод решения уравнений, аппроксимирующий корень путем построения хорды (отрезка) на графике функции и использования ее для приближенного определения корня. Алгоритм метода следующий:</p>
+<h1 id="2.-%D0%9C%D0%B5%D1%82%D0%BE%D0%B4-%D1%81%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D1%85">2. Метод секущих<a class="anchor-link" href="#2.-%D0%9C%D0%B5%D1%82%D0%BE%D0%B4-%D1%81%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D1%85">¶</a></h1><p><strong>Метод секущих (метод хорд)</strong> — это численный метод решения уравнений, аппроксимирующий корень путем построения хорды (отрезка) на графике функции и использования ее для приближенного определения корня.</p>
+<p>Основное различие между методом секущих и методом Ньютона-Рафсона заключается в том, что в методе секущих вводится аппроксимация для второй производной:
+$$ f''(x_n) = \frac{f'(x_n) - f'(x_{n-1})}{x_n - x_{n-1}} $$</p>
+<p>поэтому итерационная формула метода секущих принимает следующий вид:
+$$ x_{n+1} = x_n - f'(x_n)\frac{x_n - x_{n-1}}{f'(x_n)-f'(x_{n-1})} $$</p>
+<p>Как видно из формулы, теперь не требуется, чтобы функция была дифференцируема до второго порядка, но теперь нам нужны две начальные точки. Выбором хорошего начального интервала (начальных точек) мы позволяем алгоритму сходиться к оптимуму. Этот подход может уменьшить скорость сходимости по сравнению с методом Ньютона-Рафсона.</p>
+<p>Алгоритм метода следующий:</p>
 <ol>
 <li><p><strong>Начальный выбор:</strong></p>
 <ul>
@@ -7653,14 +7659,12 @@ $$</p>
 </li>
 <li><p><strong>Итерационный процесс:</strong></p>
 <ul>
-<li>Строится хорда между точками $(x_0, f(x_0))$ и $(x_1, f(x_1))$.</li>
+<li>Строится хорда между точками $(x_n, f(x_n))$ и $(x_{n+1}, f(x_{n+1}))$.</li>
 <li>Новая аппроксимация корня $x_2$ находится как пересечение хорды с осью $x$.</li>
 </ul>
 </li>
 </ol>
-<p>$$
-x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}
-$$</p>
+<p>$$ x_{n+1} = x_n - f'(x_n)\frac{x_n - x_{n-1}}{f'(x_n)-f'(x_{n-1})} $$</p>
 <ol start="3">
 <li><p><strong>Обновление:</strong></p>
 <ul>

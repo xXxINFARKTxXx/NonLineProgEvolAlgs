@@ -16,7 +16,7 @@ def adagrad(gradf, x0, gamma, eta, epsilon, max_iterations):
         if (np.linalg.norm(g) < epsilon):
             break
 
-    return x0, i
+    return x0, i + 1
 
 
 if __name__ == '__main__':

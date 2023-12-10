@@ -21,7 +21,7 @@ def adam(gradf, x0, gamma, omega1, omega2, eta, max_iterations, epsilon):
 
         if np.linalg.norm(g) < epsilon:
             break
-    return x0, i
+    return x0, i + 1
 
 
 if __name__ == '__main__':
