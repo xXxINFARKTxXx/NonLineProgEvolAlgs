@@ -1,6 +1,5 @@
 import numpy as np
 
-#%% Zadatak 1.
 def zadatak1(x,y):
     if len(x) != len(y):
         raise ValueError('Vektori nisu istih duzina')
