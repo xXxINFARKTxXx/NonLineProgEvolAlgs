@@ -7,36 +7,34 @@ from ODM_func_routines import func, dfunc, count_x_y
 
 def secant(x0, x1, eps):
     xk = inf
-    xk1 = x0
-    xk2 = x1
+    xk1, xk2 = x0, x1
     iter_count = 0
     while abs(xk - xk1) > eps:
-        xk = xk1
-        xk1 = xk2
+        xk, xk1= xk1, xk2
         xk2 = xk1 - dfunc(xk1) * (xk1 - xk) / (dfunc(xk1) - dfunc(xk))
         iter_count += 1
 
-    xopt = xk1
-    fopt = func(xopt)
-
-    return xopt, fopt, iter_count
+    return xk2, func(xk2), iter_count
 
 
 def main_sec(x0, x1, eps):
-    xopt, fopt, iter_count = secant(x0, x1, eps)
+    xopt, fopt, n = secant(x0, x1, eps)
 
     x, y = count_x_y()
 
-    p1 = plt.plot(x, y)
+    plt.plot(x, y)
     plt.scatter(xopt, fopt)
     plt.text(xopt, fopt, "sec")
     plt.show()
 
-    print(xopt, fopt, iter_count)
+    print('secant')
+    print('x_opt:', f'{xopt:.4f}'.format(xopt))
+    print('x_opt:', f'{fopt:.4f}'.format(fopt))
+    print('iterations:', n)
 
 
 if __name__ == '__main__':
     x0 = 0
     x1 = 1
-    eps = 0.001
+    eps = 1e-4
     main_sec(x0, x1, eps)

@@ -20,10 +20,16 @@ def adagrad(gradf, x0, gamma, eta, epsilon, max_iterations):
 
 
 if __name__ == '__main__':
-    x0 = [3, -0.1]
+    x0 = [3, 3]
+    epsilon = 1e-5
+    max_iterations = 10000
+    
     gamma = 1
-    epsilon = 1e-8
-    eta = 1e-8  ## Порядка epsilon
-    max_iterations = 1000
+    eta = 1e-5  ## Порядка epsilon
 
-    adagrad(gradf, x0, gamma, eta, epsilon, max_iterations)
+    [x1, x2], n = adagrad(gradf, x0, gamma, eta, epsilon, max_iterations)
+
+    print('adagrad')
+    print(f"x1 = {x1:.4f}".format(x1))
+    print(f"x2 = {x2:.4f}".format(x2))
+    print("n =", n)

@@ -30,30 +30,28 @@ def fib_opt_search(l, r, eps):
         else:
             r = x2
 
-    return l, r, iter_counter
+
+    return (l+r)/2, func((l+r)/2), iter_counter
 
 
 def main_fib(a, b, eps):
-    left, right, n = fib_opt_search(a, b, eps)
-    fleft = func(left)
-    fright = func(right)
+    xopt, fopt, n = fib_opt_search(a, b, eps)
 
     x, y = count_x_y()
 
-    p1 = plt.plot(x, y)
-    plt.scatter(left, fleft)
-    plt.text(left, fleft, "fib_l")
-    plt.scatter(right, fright)
-    plt.text(right, fright, "fib_r")
+    plt.plot(x, y)
+    plt.scatter(xopt, fopt)
+    plt.text(xopt, fopt, "fib")
     plt.show()
 
-    print(n)
-    print(left, fleft)
-    print(right, fright)
+    print('fib_opt_search')
+    print('x_opt:', f'{xopt:.4f}'.format(xopt))
+    print('x_opt:', f'{fopt:.4f}'.format(fopt))
+    print('iterations:', n)
 
 
 if __name__ == '__main__':
-    eps = 0.001
+    eps = 1e-4
     a = 0
     b = 1
     main_fib(a, b, eps)

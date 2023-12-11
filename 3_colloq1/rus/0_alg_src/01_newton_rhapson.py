@@ -21,19 +21,22 @@ def newton_raphson(x0, eps):
 
 
 def main_nr(x0, eps):
-    xopt, fopt, iter_count = newton_raphson(x0, eps)
+    xopt, fopt, n = newton_raphson(x0, eps)
 
     x, y = count_x_y()
 
-    p1 = plt.plot(x, y)
+    plt.plot(x, y)
     plt.scatter(xopt, fopt)
     plt.text(xopt, fopt, "N-R")
     plt.show()
 
-    print(xopt, fopt, iter_count)
+    print('newton_raphson')
+    print('x_opt:', f'{xopt:.4f}'.format(xopt))
+    print('x_opt:', f'{fopt:.4f}'.format(fopt))
+    print('iterations:', n)
 
 
 if __name__ == '__main__':
     x0 = 1
-    eps = 0.0001
+    eps = 1e-4
     main_nr(x0, eps)
