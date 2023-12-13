@@ -5,33 +5,28 @@ from matplotlib import pyplot as plt
 from ODM_func_routines import count_x_y, func
 
 
-def bine(n):
-    return int((((1 + sqrt(5)) ** n - (1 - sqrt(5)) ** n) / (2 ** n * sqrt(5))))
-
-
 def fib(a):
-    fibs = [1, 1]
-    while fibs[len(fibs) - 1] < a:
-        fibs.append(fibs[len(fibs) - 1] + fibs[len(fibs) - 2])
-
-    n = len(fibs) - 1
-    return n, fibs
+    fp, f = 1, 1
+    i = 2
+    while a > f:
+        fp, f = f, f + fp
+        i += 1
+    return f, f-fp, i
 
 
 def fib_opt_search(l, r, eps):
     crit = (r - l) / eps
-    iter_counter, fibs = fib(crit)
+    fn, fn_2, n = fib(crit)
 
-    for i in range(iter_counter, 1, -1):
-        x1 = l + fibs[i - 2] / fibs[i] * (r - l)
+    while (r - l) > eps:
+        x1 = l + fn_2 / fn * (r - l)
         x2 = l + r - x1
         if func(x1) > func(x2):
             l = x1
         else:
             r = x2
 
-
-    return (l+r)/2, func((l+r)/2), iter_counter
+    return (l+r)/2, func((l+r)/2), n
 
 
 def main_fib(a, b, eps):
@@ -46,12 +41,12 @@ def main_fib(a, b, eps):
 
     print('fib_opt_search')
     print('x_opt:', f'{xopt:.4f}'.format(xopt))
-    print('x_opt:', f'{fopt:.4f}'.format(fopt))
+    print('fopt:', f'{fopt:.4f}'.format(fopt))
     print('iterations:', n)
 
 
 if __name__ == '__main__':
     eps = 1e-4
-    a = 0
-    b = 1
+    a = -1
+    b = 2
     main_fib(a, b, eps)

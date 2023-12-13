@@ -1,7 +1,7 @@
 import numpy as np
 
 def func(x):
-    return x * x - np.sin(2 * x) + 6
+    return x * x - np.sin(2 * x)
 
 
 def dfunc(x):
